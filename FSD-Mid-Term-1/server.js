@@ -4,16 +4,14 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(express.json());
 
-// In-memory array
+
 let books = [];
 let nextId = 1;
 
 
-// TASK 2: Add a new book
-// POST /api/books
+
 
 app.post('/api/books', (req, res) => {
     const { title, author, genre, isbn, totalCopies } = req.body;
@@ -44,9 +42,6 @@ app.post('/api/books', (req, res) => {
 });
 
 
-// TASK 3: Retrieve all books
-// GET /api/books
-
 app.get('/api/books', (req, res) => {
     if (books.length === 0) {
         return res.status(200).json({
@@ -59,8 +54,6 @@ app.get('/api/books', (req, res) => {
 });
 
 
-// TASK 3: Retrieve book by ID
-// GET /api/books/:id
 
 app.get('/api/books/:id', (req, res) => {
     const id = Number(req.params.id);
@@ -76,8 +69,6 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 
-// TASK 4: Update book details
-// PUT /api/books/:id
 
 app.put('/api/books/:id', (req, res) => {
     const id = Number(req.params.id);
@@ -122,8 +113,7 @@ app.put('/api/books/:id', (req, res) => {
 });
 
 
-// TASK 5: Delete a book
-// DELETE /api/books/:id
+
 
 app.delete('/api/books/:id', (req, res) => {
     const id = Number(req.params.id);
@@ -150,8 +140,6 @@ app.delete('/api/books/:id', (req, res) => {
 });
 
 
-// TASK 6: Search books
-// GET /api/books/search?title=...
 
 app.get('/api/books/search', (req, res) => {
     const { title, author, genre } = req.query;
@@ -176,9 +164,6 @@ app.get('/api/books/search', (req, res) => {
     });
 });
 
-
-// TASK 7: Issue a book copy
-// POST /api/books/:id/issue
 
 app.post('/api/books/:id/issue', (req, res) => {
     const id = Number(req.params.id);
@@ -205,8 +190,7 @@ app.post('/api/books/:id/issue', (req, res) => {
 });
 
 
-// TASK 7: Return a book copy
-// POST /api/books/:id/return
+
 
 app.post('/api/books/:id/return', (req, res) => {
     const id = Number(req.params.id);
@@ -233,7 +217,7 @@ app.post('/api/books/:id/return', (req, res) => {
 });
 
 
-// Start server
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
